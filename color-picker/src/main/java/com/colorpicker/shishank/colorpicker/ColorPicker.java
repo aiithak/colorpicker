@@ -59,7 +59,7 @@ public class ColorPicker extends RelativeLayout {
 
     public interface ColorSelectedListener {
 
-        void onColorSelected(@ColorInt int color, boolean isTapUp);
+        void onColorSelected(@ColorInt int color, boolean isTapUp, int xPos, int yPos);
     }
 
     public ColorPicker(Context context) {
@@ -139,13 +139,13 @@ public class ColorPicker extends RelativeLayout {
                 ((GradientDrawable) ivColorPicker.getBackground()).setColor(color);
 
                 if (colorSelectedListener != null) {
-                    colorSelectedListener.onColorSelected(color, false);
+                    colorSelectedListener.onColorSelected(color, false, (int) newx, (int) newy);
                 }
 
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     ColorPicker.this.getParent().requestDisallowInterceptTouchEvent(false);
                     if (colorSelectedListener != null) {
-                        colorSelectedListener.onColorSelected(color, true);
+                        colorSelectedListener.onColorSelected(color, true, (int) newx, (int) newy);
                     }
                 }
                 return true;
