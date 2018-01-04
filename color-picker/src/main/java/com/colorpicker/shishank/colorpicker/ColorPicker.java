@@ -139,13 +139,13 @@ public class ColorPicker extends RelativeLayout {
                 ((GradientDrawable) ivColorPicker.getBackground()).setColor(color);
 
                 if (colorSelectedListener != null) {
-                    colorSelectedListener.onColorSelected(color, false, (int) newx, (int) viewBg.getWidth(), (int) newy, (int) viewBg.getHeight());
+                    colorSelectedListener.onColorSelected(color, false, (int) newx, (int) drawableToBitmap.getWidth() - 1, (int) newy, (int) drawableToBitmap.getHeight() - 1);
                 }
 
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     ColorPicker.this.getParent().requestDisallowInterceptTouchEvent(false);
                     if (colorSelectedListener != null) {
-                        colorSelectedListener.onColorSelected(color, true, (int) newx, (int) viewBg.getWidth(), (int) newy, (int) viewBg.getHeight());
+                        colorSelectedListener.onColorSelected(color, true, (int) newx, (int) drawableToBitmap.getWidth() - 1, (int) newy, (int) drawableToBitmap.getHeight() - 1);
                     }
                 }
                 return true;
